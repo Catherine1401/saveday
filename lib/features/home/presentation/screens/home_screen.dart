@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saveday/core/constants/app_icons.dart';
 import 'package:saveday/core/theme/app_colors.dart';
+import 'package:saveday/features/home/presentation/screens/filter_screen.dart';
 import 'package:saveday/features/home/presentation/widgets/masonry_widget.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -44,9 +45,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       bottom: 10,
       right: 10,
       child: IconButton.outlined(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            ),
+            builder: (context) {
+              return FilterScreen();
+            },
+          );
+        },
         icon: const Icon(AppIcons.filter),
         style: IconButton.styleFrom(
+          backgroundColor: AppColors.white500,
           side: BorderSide(color: AppColors.grey400, width: 1.5),
         ),
       ),

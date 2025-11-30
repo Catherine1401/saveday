@@ -12,12 +12,22 @@ class PostWidget extends StatelessWidget {
     return Column(
       children: [
         // image
-        Image.network(imageurl),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.network(imageurl),
+        ),
         // content & action
+        const SizedBox(height: 5),
         Row(
           children: [
-            Expanded(child: Text(content, maxLines: 2, overflow: TextOverflow.ellipsis)),
-            IconButton(onPressed: () {}, icon: Icon(AppIcons.dotthree)) 
+            Expanded(
+              child: Text(
+                content,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            IconButton(onPressed: () {}, icon: Icon(AppIcons.dotthree)),
           ],
         ),
       ],

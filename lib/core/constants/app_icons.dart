@@ -11,4 +11,11 @@ class AppIcons {
   static const IconData bookmark = PhosphorIconsFill.bookmarkSimple;
   static const IconData user = PhosphorIconsBold.user;
   static const IconData dotthree = PhosphorIconsBold.dotsThree;
+  static const IconData article = PhosphorIconsBold.article;
+  static const IconData link = PhosphorIconsBold.linkSimple;
+  static const IconData image = PhosphorIconsBold.image;
+  static const IconData play = PhosphorIconsFill.play;
+  static const IconData audio = PhosphorIconsBold.radioactive;
+  static const IconData document = PhosphorIconsFill.file;
 }
+
