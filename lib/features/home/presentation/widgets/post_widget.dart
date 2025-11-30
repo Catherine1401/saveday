@@ -10,6 +10,8 @@ class PostWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         // image
         ClipRRect(
@@ -19,10 +21,14 @@ class PostWidget extends StatelessWidget {
         // content & action
         const SizedBox(height: 5),
         Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Expanded(
               child: Text(
                 content,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w400),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),

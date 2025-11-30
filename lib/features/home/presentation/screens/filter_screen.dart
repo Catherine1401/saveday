@@ -15,10 +15,10 @@ class FilterScreen extends ConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         // header
-        _buildHeader(ref),
+        _buildHeader(context, ref),
         const Divider(),
         // body
-        _buildBody(ref),
+        _buildBody(context, ref),
         const SizedBox(height: 8),
         // action
         _buildAction(context, ref),
@@ -27,7 +27,7 @@ class FilterScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildHeader(WidgetRef ref) {
+  Widget _buildHeader(BuildContext context, WidgetRef ref) {
     final String header = 'Filter';
     final String action = 'Select all';
     return Padding(
@@ -35,19 +35,19 @@ class FilterScreen extends ConsumerWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(header),
+          Text(header, style: Theme.of(context).textTheme.titleLarge),
           TextButton(
             onPressed: () {
               ref.read(filterProvider.notifier).selectAll();
             },
-            child: Text(action),
+            child: Text(action, style: Theme.of(context).textTheme.titleMedium),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildBody(WidgetRef ref) {
+  Widget _buildBody(BuildContext context, WidgetRef ref) {
     final filterItems = [
       (
         icon: AppIcons.article,
@@ -97,22 +97,25 @@ class FilterScreen extends ConsumerWidget {
 
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Row(
-              children: [
-                _buildFilterIcon(item.icon, item.color),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    item.label,
-                    style: const TextStyle(fontWeight: FontWeight.w500),
+            child: GestureDetector(
+              onTap: () => ref.read(filterProvider.notifier).toggle(item.type),
+              child: Row(
+                children: [
+                  _buildFilterIcon(item.icon, item.color),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      item.label,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
                   ),
-                ),
-                Checkbox(
-                  value: isSelected,
-                  onChanged: (_) =>
-                      ref.read(filterProvider.notifier).toggle(item.type),
-                ),
-              ],
+                  Checkbox(
+                    value: isSelected,
+                    onChanged: (_) =>
+                        ref.read(filterProvider.notifier).toggle(item.type),
+                  ),
+                ],
+              ),
             ),
           );
         }).toList(),
@@ -148,7 +151,10 @@ class FilterScreen extends ConsumerWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cancel'),
+              child: Text(
+                'Cancel',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
             ),
           ),
           const SizedBox(width: 8),
@@ -169,7 +175,10 @@ class FilterScreen extends ConsumerWidget {
                     .filterByTypes(filtersToApply);
                 Navigator.pop(context);
               },
-              child: const Text('Apply'),
+              child:  Text(
+                'Apply',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
             ),
           ),
         ],

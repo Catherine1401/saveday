@@ -13,15 +13,18 @@ class MasonryWidget extends ConsumerWidget {
 
     return asyncPosts.when(
       data: (posts) {
-        return SliverMasonryGrid.count(
-          crossAxisCount: 2,
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
-          childCount: posts.length,
-          itemBuilder: (_, index) {
-            final post = posts[index];
-            return PostWidget(imageurl: post.imageUrl, content: post.content);
-          },
+        return SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          sliver: SliverMasonryGrid.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childCount: posts.length,
+            itemBuilder: (_, index) {
+              final post = posts[index];
+              return PostWidget(imageurl: post.imageUrl, content: post.content);
+            },
+          ),
         );
       },
       error: (err, _) => SliverFillRemaining(child: Center(child: Text(err as String))),
