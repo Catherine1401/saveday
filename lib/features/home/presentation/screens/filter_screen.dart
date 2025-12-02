@@ -5,6 +5,7 @@ import 'package:saveday/core/theme/app_colors.dart';
 import 'package:saveday/features/home/domain/entities/content_type.dart';
 import 'package:saveday/features/home/presentation/providers/filter_controller.dart';
 import 'package:saveday/features/home/presentation/providers/home_controller.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 class FilterScreen extends ConsumerWidget {
   const FilterScreen({super.key});
@@ -95,10 +96,12 @@ class FilterScreen extends ConsumerWidget {
         children: filterItems.map((item) {
           final isSelected = selectedFilter.contains(item.type);
 
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: GestureDetector(
-              onTap: () => ref.read(filterProvider.notifier).toggle(item.type),
+          return GestureDetector(
+            onTap: () {
+              ref.read(filterProvider.notifier).toggle(item.type);
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Row(
                 children: [
                   _buildFilterIcon(item.icon, item.color),
@@ -109,8 +112,9 @@ class FilterScreen extends ConsumerWidget {
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),
-                  Checkbox(
+                  ShadCheckbox(
                     value: isSelected,
+                    duration: Duration(milliseconds: 300),
                     onChanged: (_) =>
                         ref.read(filterProvider.notifier).toggle(item.type),
                   ),
@@ -141,20 +145,16 @@ class FilterScreen extends ConsumerWidget {
         children: [
           // left
           Expanded(
-            child: OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+            child: ShadButton.outline(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              decoration: ShadDecoration(
+                border: ShadBorder.all(
+                  width: 1,
+                  color: AppColors.black600.withOpacity(0.2),
                 ),
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text(
-                'Cancel',
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
+              child: Text('Cancel'),
+              onPressed: () => Navigator.pop(context),
             ),
           ),
           const SizedBox(width: 8),
@@ -175,7 +175,7 @@ class FilterScreen extends ConsumerWidget {
                     .filterByTypes(filtersToApply);
                 Navigator.pop(context);
               },
-              child:  Text(
+              child: Text(
                 'Apply',
                 style: Theme.of(context).textTheme.titleMedium,
               ),

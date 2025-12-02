@@ -1,20 +1,24 @@
 import 'package:saveday/features/home/domain/entities/content_type.dart';
-import 'package:saveday/features/home/domain/entities/post.dart';
 
-class PostModel extends Post {
+class PostModel {
+  final String id;
+  final String imageUrl;
+  final String content;
+  final ContentType type;
+
   PostModel({
-    required super.id,
-    required super.imageUrl,
-    required super.content,
-    required super.type,
+    required this.id,
+    required this.imageUrl,
+    required this.content,
+    required this.type,
   });
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
     return PostModel(
-      id: json['id'] ?? '',
-      imageUrl: json['imageUrl'] ?? 'https://picsum.photos/400/300',
-      content: json['content'] ?? 'default content',
-      type: json['type'] ?? ContentType.document,
+      id: json['id'] as String,
+      imageUrl: json['imageUrl'] as String,
+      content: json['content'] as String,
+      type: json['content_type'] as ContentType,
     );
   }
 }
