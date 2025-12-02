@@ -1,5 +1,27 @@
+
+import 'package:saveday/data/repositories/post_repository.dart';
 import 'package:saveday/features/home/domain/entities/content_type.dart';
 import 'package:saveday/features/home/domain/entities/post.dart';
+
+class PostLocalRepoImpl implements PostRepository {
+  @override
+  Future<Post> getPost(String id) async {
+    final posts = await getPosts(); 
+    return posts.firstWhere((post) => post.id == id);
+  }
+
+  @override
+  Future<List<Post>> getPosts() async {
+    return kMockPosts;
+  }
+
+  @override
+  Future<List<Post>> getPostsBytypes(Set<ContentType> types) async {
+    final posts = await getPosts();
+    return posts.where((post) => types.contains(post.type)).toList();
+  }
+
+}
 
 final List<Post> kMockPosts = [
   // --- ARTICLE ---
@@ -137,8 +159,3 @@ final List<Post> kMockPosts = [
   ),
 ];
 
-class HomeRemoteDataSource {
-  Future<List<Post>> getRemotePosts() async {
-    return kMockPosts;    
-  }
-}
