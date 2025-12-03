@@ -42,8 +42,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
       backgroundColor: AppColors.white800.withOpacity(0.9),
       shadowColor: AppColors.blue500,
-      leading:  SvgPicture.asset(AppIcons.bookmark, color: AppColors.black500),
-      actions: [ SvgPicture.asset(AppIcons.profile, color: AppColors.grey500)],
+      leading: Center(
+        child: SvgPicture.asset(
+          AppIcons.save,
+          width: 16,
+          height: 16,
+          colorFilter: ColorFilter.mode(AppColors.black700, BlendMode.srcIn),
+        ),
+      ),
+      actions: [
+        Center(
+          child: SvgPicture.asset(
+            AppIcons.profile,
+            height: 24,
+            width: 24,
+            colorFilter: ColorFilter.mode(
+              AppColors.black900.withOpacity(.5),
+              BlendMode.srcIn,
+            ),
+          ),
+        ),
+      ],
       actionsPadding: const EdgeInsetsGeometry.only(right: 15),
     );
   }

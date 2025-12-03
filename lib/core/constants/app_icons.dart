@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
-
 class AppIcons {
   static const String home = 'assets/icons/home.svg';
   static const String collection = 'assets/icons/collection.svg';
@@ -8,7 +5,7 @@ class AppIcons {
   static const String search = 'assets/icons/search.svg';
   static const String plus = 'assets/icons/plus.svg';
   static const String filter = 'assets/icons/filter.svg';
-  static const String bookmark = 'assets/icons/bookmark.svg';
+  static const String save = 'assets/icons/save.svg';
   static const String profile = 'assets/icons/profile.svg';
   static const String menu = 'assets/icons/menu.svg';
   static const String article = 'assets/icons/article.svg';
