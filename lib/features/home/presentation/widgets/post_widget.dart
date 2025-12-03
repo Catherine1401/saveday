@@ -35,7 +35,7 @@ class PostWidget extends StatelessWidget {
             ShadButton.ghost(
               onPressed: () {},
               padding: const EdgeInsets.only(left: 6),
-              child: SvgPicture.asset(AppIcons.menu, width: 24, height: 24),
+              child: SvgPicture.asset(AppIcons.menu, width: 20, height: 20),
             ),
           ],
         ),

@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:saveday/core/constants/app_icons.dart';
 import 'package:saveday/core/theme/app_colors.dart';
-import 'package:saveday/features/home/presentation/screens/filter_screen.dart';
+import 'package:saveday/features/home/presentation/providers/filter_controller.dart';
 import 'package:saveday/features/home/presentation/widgets/masonry_widget.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
-class HomeScreen extends ConsumerStatefulWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  ConsumerState<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends ConsumerState<HomeScreen> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Stack(
       children: [
         CustomScrollView(
@@ -27,7 +22,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ],
         ),
         // filter
-        _buildFilter(),
+        _buildFilter(context, ref),
       ],
     );
   }
@@ -57,7 +52,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             height: 24,
             width: 24,
             colorFilter: ColorFilter.mode(
-              AppColors.black900.withOpacity(.5),
+              AppColors.black900.withValues(alpha: .5),
               BlendMode.srcIn,
             ),
           ),
@@ -67,28 +62,67 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  Widget _buildFilter() {
+  Widget _buildFilter(BuildContext context, WidgetRef ref) {
+    final filter = ref.watch(filterProvider);
+    final filterCount = filter.length;
     return Positioned(
-      bottom: 10,
-      right: 10,
-      child: IconButton.outlined(
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      bottom: 9,
+      right: 9,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          ShadButton.outline(
+            backgroundColor: AppColors.white800,
+            decoration: ShadDecoration(
+              shape: BoxShape.circle,
+              shadows: [
+                BoxShadow(
+                  offset: Offset(0, 14),
+                  blurRadius: 20,
+                  spreadRadius: -10,
+                  color: AppColors.black900.withOpacity(.15),
+                ),
+                BoxShadow(
+                  color: AppColors.black900.withOpacity(.2),
+                  offset: Offset(0, 4),
+                  blurRadius: 2,
+                  spreadRadius: -3,
+                ),
+              ],
+              border: ShadBorder.all(
+                width: 1,
+                color: AppColors.black900.withOpacity(.4),
+              ),
             ),
-            builder: (context) {
-              return FilterScreen();
-            },
-          );
-        },
-        icon: SvgPicture.asset(AppIcons.filter),
-        style: IconButton.styleFrom(
-          backgroundColor: AppColors.white500,
-          side: BorderSide(color: AppColors.grey400, width: 1.5),
-        ),
+            child: SvgPicture.asset(AppIcons.filter, width: 28, height: 28),
+            onPressed: () async => await ref
+                .read(filterProvider.notifier)
+                .showBlurredModel(context),
+          ),
+          if (filterCount > 0)
+            Positioned(
+              top: -4,
+              right: 8,
+              child: Container(
+                width: 20,
+                height: 20,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: AppColors.black600,
+                  shape: BoxShape.circle,
+                  border: Border.all(color: AppColors.white800.withOpacity(.3)),
+                ),
+                child: Text(
+                  '$filterCount',
+                  style: ShadTheme.of(context).textTheme.h4.copyWith(
+                    color: AppColors.white800,
+                    fontSize: 11,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }
