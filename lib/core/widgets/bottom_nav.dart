@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:saveday/core/constants/app_icons.dart';
 import 'package:saveday/core/theme/app_colors.dart';
 import 'package:saveday/core/widgets/screen_management.dart';
@@ -10,41 +11,56 @@ class BottomNav extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = ref.watch(bottomNavProvider);
-    return NavigationBar(
-      backgroundColor: AppColors.white500,
-      selectedIndex: currentIndex,
-      indicatorColor: AppColors.grey300,
-      labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-      onDestinationSelected: (int index) {
-        ref.read(bottomNavProvider.notifier).changeTab(index);
-      },
-      destinations: [
-        const NavigationDestination(
-          icon: Icon(AppIcons.home, color: AppColors.grey500),
-          selectedIcon: Icon(AppIcons.home, color: AppColors.black500),
-          label: 'Home',
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(width: .5, color: AppColors.black900.withOpacity(.1)),
         ),
-        const NavigationDestination(
-          icon: Icon(AppIcons.archive, color: AppColors.grey500),
-          selectedIcon: Icon(AppIcons.archive, color: AppColors.black500),
-          label: 'Home',
+      ),
+      child: NavigationBar(
+        height: 56,
+        backgroundColor: AppColors.white800.withOpacity(.9),
+        selectedIndex: currentIndex,
+        indicatorColor: Colors.transparent,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+        onDestinationSelected: (int index) {
+          ref.read(bottomNavProvider.notifier).changeTab(index);
+        },
+        destinations: [
+          _buildNavigationDestination(AppIcons.home, 'home'),
+          _buildNavigationDestination(AppIcons.collection, 'collection'),
+          _buildNavigationDestination(AppIcons.magic, 'magic'),
+          _buildNavigationDestination(AppIcons.search, 'search'),
+          _buildNavigationDestination(AppIcons.plus, 'plus'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNavigationDestination(String icon, String label) {
+    return NavigationDestination(
+      icon: SvgPicture.asset(
+        icon,
+        colorFilter: ColorFilter.mode(
+          AppColors.black900.withOpacity(0.5),
+          BlendMode.srcIn,
         ),
-        const NavigationDestination(
-          icon: Icon(AppIcons.ai, color: AppColors.grey500),
-          selectedIcon: Icon(AppIcons.ai, color: AppColors.black500),
-          label: 'Home',
+      ),
+      selectedIcon: Container(
+        padding: const EdgeInsets.all(6),
+        decoration: BoxDecoration(
+          color: AppColors.black900.withOpacity(0.05),
+          borderRadius: BorderRadius.circular(6),
         ),
-        const NavigationDestination(
-          icon: Icon(AppIcons.search, color: AppColors.grey500),
-          selectedIcon: Icon(AppIcons.search, color: AppColors.black500),
-          label: 'Home',
+        child: SvgPicture.asset(
+          icon,
+          colorFilter: ColorFilter.mode(
+            AppColors.black900.withOpacity(0.8),
+            BlendMode.srcIn,
+          ),
         ),
-        const NavigationDestination(
-          icon: Icon(AppIcons.plus, color: AppColors.grey500),
-          selectedIcon: Icon(AppIcons.plus, color: AppColors.black500),
-          label: 'Home',
-        ),
-      ],
+      ),
+      label: label,
     );
   }
 }

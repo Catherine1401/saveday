@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:saveday/core/constants/app_icons.dart';
 import 'package:saveday/core/theme/app_colors.dart';
 import 'package:saveday/features/home/presentation/screens/filter_screen.dart';
@@ -21,7 +22,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           slivers: [
             // app bar
             _buildAppBar(),
-            SliverToBoxAdapter(child: Divider()),
             MasonryWidget(),
             // feed
           ],
@@ -34,8 +34,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   Widget _buildAppBar() {
     return SliverAppBar(
-      leading: const Icon(AppIcons.bookmark, color: AppColors.black500),
-      actions: [const Icon(AppIcons.user, color: AppColors.grey500)],
+      shape: Border(
+        bottom: BorderSide(
+          width: 0.5,
+          color: AppColors.black900.withOpacity(0.1),
+        ),
+      ),
+      backgroundColor: AppColors.white800.withOpacity(0.9),
+      shadowColor: AppColors.blue500,
+      leading:  SvgPicture.asset(AppIcons.bookmark, color: AppColors.black500),
+      actions: [ SvgPicture.asset(AppIcons.profile, color: AppColors.grey500)],
       actionsPadding: const EdgeInsetsGeometry.only(right: 15),
     );
   }
@@ -57,7 +65,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             },
           );
         },
-        icon: const Icon(AppIcons.filter),
+        icon: SvgPicture.asset(AppIcons.filter),
         style: IconButton.styleFrom(
           backgroundColor: AppColors.white500,
           side: BorderSide(color: AppColors.grey400, width: 1.5),

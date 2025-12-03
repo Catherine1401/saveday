@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class AppIcons {
-  static const IconData home = PhosphorIconsBold.house;
-  static const IconData archive = PhosphorIconsBold.archive;
-  static const IconData ai = PhosphorIconsBold.atom;
-  static const IconData search = PhosphorIconsBold.magnifyingGlass;
-  static const IconData plus = PhosphorIconsBold.plus;
-  static const IconData filter = PhosphorIconsBold.funnelSimple;
-  static const IconData bookmark = PhosphorIconsFill.bookmarkSimple;
-  static const IconData user = PhosphorIconsBold.user;
-  static const IconData dotthree = PhosphorIconsBold.dotsThree;
-  static const IconData article = PhosphorIconsBold.article;
-  static const IconData link = PhosphorIconsBold.linkSimple;
-  static const IconData image = PhosphorIconsBold.image;
-  static const IconData play = PhosphorIconsFill.play;
-  static const IconData audio = PhosphorIconsBold.radioactive;
-  static const IconData document = PhosphorIconsFill.file;
+  static const String home = 'assets/icons/home.svg';
+  static const String collection = 'assets/icons/collection.svg';
+  static const String magic = 'assets/icons/magic.svg';
+  static const String search = 'assets/icons/search.svg';
+  static const String plus = 'assets/icons/plus.svg';
+  static const String filter = 'assets/icons/filter.svg';
+  static const String bookmark = 'assets/icons/bookmark.svg';
+  static const String profile = 'assets/icons/profile.svg';
+  static const String menu = 'assets/icons/menu.svg';
+  static const String article = 'assets/icons/article.svg';
+  static const String link = 'assets/icons/link.svg';
+  static const String image = 'assets/icons/image.svg';
+  static const String video = 'assets/icons/video.svg';
+  static const String audio = 'assets/icons/audio.svg';
+  static const String document = 'assets/icons/document.svg';
 }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:saveday/core/constants/app_icons.dart';
 
 class PostWidget extends StatelessWidget {
@@ -33,7 +34,7 @@ class PostWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            IconButton(onPressed: () {}, icon: Icon(AppIcons.dotthree)),
+            IconButton(onPressed: () {}, icon: SvgPicture.asset(AppIcons.menu)),
           ],
         ),
       ],

@@ -69,7 +69,7 @@ class FilterScreen extends ConsumerWidget {
         color: AppColors.grey400,
       ),
       (
-        icon: AppIcons.play,
+        icon: AppIcons.video,
         label: 'Video',
         type: ContentType.video,
         color: AppColors.yellow500,
@@ -127,13 +127,13 @@ class FilterScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildFilterIcon(IconData icon, Color color) {
+  Widget _buildFilterIcon(String icon, Color color) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(8),
       child: Container(
         padding: const EdgeInsets.all(6),
         color: color,
-        child: Icon(icon, size: 20),
+        child: SvgPicture.asset(icon),
       ),
     );
   }
