@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:saveday/core/constants/app_icons.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 class PostWidget extends StatelessWidget {
   const PostWidget({super.key, required this.imageurl, required this.content});
@@ -16,25 +16,27 @@ class PostWidget extends StatelessWidget {
       children: [
         // image
         ClipRRect(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(6),
           child: Image.network(imageurl),
         ),
         // content & action
-        const SizedBox(height: 5),
+        const SizedBox(height: 6),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Expanded(
               child: Text(
                 content,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w400),
+                style: ShadTheme.of(context).textTheme.h4,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            IconButton(onPressed: () {}, icon: SvgPicture.asset(AppIcons.menu)),
+            ShadButton.ghost(
+              onPressed: () {},
+              padding: const EdgeInsets.only(left: 6),
+              child: SvgPicture.asset(AppIcons.menu, width: 24, height: 24),
+            ),
           ],
         ),
       ],

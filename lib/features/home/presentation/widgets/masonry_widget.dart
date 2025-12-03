@@ -14,11 +14,11 @@ class MasonryWidget extends ConsumerWidget {
     return asyncPosts.when(
       data: (posts) {
         return SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           sliver: SliverMasonryGrid.count(
             crossAxisCount: 2,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
+            mainAxisSpacing: 16,
+            crossAxisSpacing: 12,
             childCount: posts.length,
             itemBuilder: (_, index) {
               final post = posts[index];

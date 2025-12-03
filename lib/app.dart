@@ -9,9 +9,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ShadApp.custom(
+      theme: AppTheme.lightTheme,
       appBuilder: (context) {
         return MaterialApp(
-          theme: AppTheme.lightTheme,
+          theme: Theme.of(context),
           debugShowCheckedModeBanner: false,
           home: RootScreen(),
         );
