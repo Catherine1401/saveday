@@ -13,7 +13,7 @@ final homeControllerProvider = AsyncNotifierProvider<PostNotifier, List<Post>>(
 class PostNotifier extends AsyncNotifier<List<Post>> {
   @override
   Future<List<Post>> build() async {
-    final repository = ref.read(postLocalRepositoryProvider);
+    final repository = ref.read(postRepositoryFirebaseProvider);
     final filterTypes = ref.watch(filterProvider);
     return filterTypes.isEmpty
         ? repository.getPosts()

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1087801747066",
+    "project_id": "hw-saveday",
+    "storage_bucket": "hw-saveday.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087801747066:android:854beb5b10312a0852bdc3",
+        "android_client_info": {
+          "package_name": "com.example.saveday"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBguFojGd0mJ4o5mvKFQRLjEQ2SnSNA9TY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
