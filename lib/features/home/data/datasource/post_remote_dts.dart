@@ -17,7 +17,7 @@ class PostRemoteDataSource implements PostDataSource {
 
   @override
   Future<List<Post>> fetchPosts() async {
-    final baseUrl = 'http://localhost:8088';
+    final baseUrl = 'https://saveday-backend-my0krve-catherine1401.globeapp.dev';
     final response = await _dio.get('$baseUrl/api/posts');
 
     if (response.statusCode == 200) {
