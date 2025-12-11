@@ -1,26 +1,29 @@
-
-import 'package:saveday/data/repositories/post_repository.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:saveday/features/home/data/datasource/post_datasource.dart';
 import 'package:saveday/features/home/domain/entities/content_type.dart';
 import 'package:saveday/features/home/domain/entities/post.dart';
 
-class PostLocalRepoImpl implements PostRepository {
-  @override
-  Future<Post> getPost(String id) async {
-    final posts = await getPosts(); 
-    return posts.firstWhere((post) => post.id == id);
-  }
+final postLocalDataSourceProvider = Provider<PostLocalDataSource>((ref) {
+  return PostLocalDataSource();
+});
 
+class PostLocalDataSource implements PostDataSource {
   @override
-  Future<List<Post>> getPosts() async {
+  Future<List<Post>> fetchPosts() async {
     return kMockPosts;
   }
 
   @override
-  Future<List<Post>> getPostsBytypes(Set<ContentType> types) async {
-    final posts = await getPosts();
-    return posts.where((post) => types.contains(post.type)).toList();
+  Future<void> putPost(Post post) {
+    // TODO: implement putPost
+    throw UnimplementedError();
   }
 
+  @override
+  Future<void> putPosts(List<Post> posts) {
+    // TODO: implement putPosts
+    throw UnimplementedError();
+  }
 }
 
 final List<Post> kMockPosts = [
@@ -69,7 +72,7 @@ final List<Post> kMockPosts = [
     id: '7',
     imageUrl: 'https://picsum.photos/seed/7/400/300',
     content: 'Bộ sưu tập ảnh phong cảnh mùa thu tuyệt đẹp',
-    type: ContentType.images, 
+    type: ContentType.images,
   ),
   Post(
     id: '8',
@@ -158,4 +161,3 @@ final List<Post> kMockPosts = [
     type: ContentType.video,
   ),
 ];
-

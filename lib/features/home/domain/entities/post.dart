@@ -12,4 +12,11 @@ class Post {
     required this.content,
     required this.type,
   });
+
+  Map<String, dynamic> toMap() => {
+    'id': id,
+    'imageUrl': imageUrl,
+    'content': content,
+    'type': type.name
+  };
 }
