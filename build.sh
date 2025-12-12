@@ -21,4 +21,4 @@ cat <<EOF > env_config.json
 }
 EOF
 
-flutter/bin/flutter build web --release --dart-define-from-file=env_config.json
+flutter build web --release --dart-define-from-file=env_config.json
