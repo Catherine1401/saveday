@@ -20,6 +20,12 @@ cat <<EOF > env_config.json
   "APP_ID_WINDOWS": "$APP_ID_WINDOWS"
 }
 EOF
+# Tự động tìm đường dẫn của flutter
+FLUTTER_PATH=$(which flutter)
 
-# Gọi lệnh build bằng đường dẫn chuẩn của Vercel
-$FLUTTER_ROOT/bin/flutter build web --release --dart-define-from-file=env_config.json
+# Nếu tìm thấy, dùng đường dẫn đó để build, nếu không thì dùng lệnh 'flutter' mặc định
+if [ -n "$FLUTTER_PATH" ]; then
+  $FLUTTER_PATH build web --release --dart-define-from-file=env_config.json
+else
+  flutter build web --release --dart-define-from-file=env_config.json
+fi
