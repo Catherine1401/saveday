@@ -21,4 +21,5 @@ cat <<EOF > env_config.json
 }
 EOF
 
-flutter build web --release --dart-define-from-file=env_config.json
+# Gọi lệnh build bằng đường dẫn chuẩn của Vercel
+$FLUTTER_ROOT/bin/flutter build web --release --dart-define-from-file=env_config.json
