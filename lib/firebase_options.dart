@@ -3,7 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
-
+import 'package:saveday/core/constants/app_env.dart';
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
 /// Example:
@@ -40,47 +40,47 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBI_Ye5cJNeozjVjBjOCAXvfe9E_x52wF8',
-    appId: '1:1087801747066:web:ab3c82657af3ec1c52bdc3',
-    messagingSenderId: '1087801747066',
-    projectId: 'hw-saveday',
-    authDomain: 'hw-saveday.firebaseapp.com',
-    storageBucket: 'hw-saveday.firebasestorage.app',
+  static final FirebaseOptions web = FirebaseOptions(
+    apiKey: AppEnv.API_KEY_WEB,
+    appId: AppEnv.APP_ID_WEB,
+    messagingSenderId: AppEnv.MESSAGING_SENDER_ID,
+    projectId: AppEnv.PROJECT_ID,
+    authDomain: AppEnv.AUTH_DOMAIN,
+    storageBucket: AppEnv.STORAGE_BUCKET,
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBguFojGd0mJ4o5mvKFQRLjEQ2SnSNA9TY',
-    appId: '1:1087801747066:android:854beb5b10312a0852bdc3',
-    messagingSenderId: '1087801747066',
-    projectId: 'hw-saveday',
-    storageBucket: 'hw-saveday.firebasestorage.app',
+  static final FirebaseOptions android = FirebaseOptions(
+    apiKey: AppEnv.API_KEY_ANDROID,
+    appId: AppEnv.APP_ID_ANDROID,
+    messagingSenderId: AppEnv.MESSAGING_SENDER_ID,
+    projectId: AppEnv.PROJECT_ID,
+    storageBucket: AppEnv.STORAGE_BUCKET,
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAsRFOGEz57t26Jd0d3lHJTBNuMZP4LvdA',
-    appId: '1:1087801747066:ios:a24e8a95d60c6dd652bdc3',
-    messagingSenderId: '1087801747066',
-    projectId: 'hw-saveday',
-    storageBucket: 'hw-saveday.firebasestorage.app',
-    iosBundleId: 'com.example.saveday',
+  static final FirebaseOptions ios = FirebaseOptions(
+    apiKey: AppEnv.API_KEY_IOS,
+    appId: AppEnv.APP_ID_IOS,
+    messagingSenderId: AppEnv.MESSAGING_SENDER_ID,
+    projectId: AppEnv.PROJECT_ID,
+    storageBucket: AppEnv.STORAGE_BUCKET,
+    iosBundleId: AppEnv.IOS_BUNDLE_ID,
   );
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAsRFOGEz57t26Jd0d3lHJTBNuMZP4LvdA',
-    appId: '1:1087801747066:ios:a24e8a95d60c6dd652bdc3',
-    messagingSenderId: '1087801747066',
-    projectId: 'hw-saveday',
-    storageBucket: 'hw-saveday.firebasestorage.app',
-    iosBundleId: 'com.example.saveday',
+  static final FirebaseOptions macos = FirebaseOptions(
+    apiKey: AppEnv.API_KEY_MACOS,
+    appId: AppEnv.APP_ID_MACOS,
+    messagingSenderId: AppEnv.MESSAGING_SENDER_ID,
+    projectId: AppEnv.PROJECT_ID,
+    storageBucket: AppEnv.STORAGE_BUCKET,
+    iosBundleId: AppEnv.IOS_BUNDLE_ID,
   );
 
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBI_Ye5cJNeozjVjBjOCAXvfe9E_x52wF8',
-    appId: '1:1087801747066:web:b4d303e59573bdb252bdc3',
-    messagingSenderId: '1087801747066',
-    projectId: 'hw-saveday',
-    authDomain: 'hw-saveday.firebaseapp.com',
-    storageBucket: 'hw-saveday.firebasestorage.app',
+  static final FirebaseOptions windows = FirebaseOptions(
+    apiKey: AppEnv.API_KEY_WINDOWS,
+    appId: AppEnv.APP_ID_WINDOWS,
+    messagingSenderId: AppEnv.MESSAGING_SENDER_ID,
+    projectId: AppEnv.PROJECT_ID,
+    authDomain: AppEnv.AUTH_DOMAIN,
+    storageBucket: AppEnv.STORAGE_BUCKET,
   );
 }
