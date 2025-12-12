@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saveday/core/widgets/bottom_nav.dart';
 import 'package:saveday/features/home/presentation/screens/home_screen.dart';
+import 'package:saveday/features/home/presentation/screens/selected_screen.dart';
 
 final bottomNavProvider = NotifierProvider<BottomNavNotifier, int>(() {
   return BottomNavNotifier();
@@ -26,7 +27,7 @@ class RootScreen extends ConsumerWidget {
     final currentIndex = ref.watch(bottomNavProvider);
     final List<Widget> pages = [
       HomeScreen(),
-      Center(child: Text("🔍 Đây là Tìm Kiếm", style: TextStyle(fontSize: 24))),
+      SelectedScreen(),
       Center(child: Text("👤 Đây là Cá Nhân", style: TextStyle(fontSize: 24))),
       Center(child: Text("👤 Đây là Cá Nhân", style: TextStyle(fontSize: 24))),
       Center(child: Text("👤 Đây là Cá Nhân", style: TextStyle(fontSize: 24))),

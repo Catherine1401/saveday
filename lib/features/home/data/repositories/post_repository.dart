@@ -6,10 +6,21 @@ import 'package:saveday/features/home/data/datasource/post_remote_dts.dart';
 import 'package:saveday/features/home/domain/entities/content_type.dart';
 import 'package:saveday/features/home/domain/entities/post.dart';
 import 'package:saveday/features/home/domain/repository/post_repository.dart';
+import 'package:saveday/features/home/presentation/providers/select_data_provider.dart';
 
-final postRepositoryProvider = Provider<PostRepository>((ref) {
-  return PostRepositoryImpl(ref.read(postRemoteDatasourceProcvider));
-});
+final postRepositoryProvider = Provider<PostRepositoryImpl>(
+  isAutoDispose: true,
+  (ref) {
+    final option = ref.watch(selectDataSourceProvider);
+
+    print('hello wolrd');
+    return switch (option) {
+      1 => PostRepositoryImpl(ref.read(postRemoteDatasourceProcvider)),
+      2 => PostRepositoryImpl(ref.read(postFirestoreDataSourceProvider)),
+      _ => PostRepositoryImpl(ref.read(postLocalDataSourceProvider)),
+    };
+  },
+);
 
 class PostRepositoryImpl implements PostRepository {
   final PostDataSource _dataSource;

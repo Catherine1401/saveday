@@ -1,0 +1,18 @@
+# Các thư mục cực nặng của Flutter/Dart
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Các thư mục nền tảng không cần thiết cho Web
+ios/
+android/
+windows/
+linux/
+macos/
+
+# Các tệp môi trường và tệp rác
+.env
+.env.local
+.DS_Store
+node_modules/

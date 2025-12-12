@@ -13,7 +13,7 @@ final homeControllerProvider = AsyncNotifierProvider<PostNotifier, List<Post>>(
 class PostNotifier extends AsyncNotifier<List<Post>> {
   @override
   Future<List<Post>> build() async {
-    final repository = ref.read(postRepositoryProvider);
+    final repository = ref.watch(postRepositoryProvider);
     final filterTypes = ref.watch(filterProvider);
     return filterTypes.isEmpty
         ? repository.getPosts()
@@ -24,7 +24,7 @@ class PostNotifier extends AsyncNotifier<List<Post>> {
     state = const AsyncValue.loading();
 
     state = await AsyncValue.guard(() async {
-      final repository = ref.read(postRepositoryProvider);
+      final repository = ref.watch(postRepositoryProvider);
 
       if (types.isEmpty) {
         return repository.getPosts();
